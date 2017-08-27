@@ -2,6 +2,7 @@
 # XLNT - Excel parse library
 ##################################################
 option(TESTS "Set to OFF to skip building test executable (in ./tests)" OFF)
+option(STATIC "Set to ON to build xlnt as a static library instead of a shared library" ON)
 add_subdirectory(${XLSRAP_EXTERNAL}/xlnt)
 
 ##################################################
