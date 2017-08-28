@@ -1,11 +1,10 @@
 #ifndef XLSMODEL_H
 #define XLSMODEL_H
 
-#include <XLSItem.h>
 #include <QtCore\qdebug.h>
 #include <QtCore\qstringlist.h>
 #include <xlnt\xlnt.hpp>
-
+#include <qabstractitemview.h>
 
 class XLSModel : public QAbstractTableModel {
 	Q_OBJECT
