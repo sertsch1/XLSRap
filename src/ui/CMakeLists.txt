@@ -3,13 +3,11 @@ SET(XLSRAP_UI_SRCS
 	Main.cpp
 	mainwindow.cpp
 	XLSModel.cpp
-	XLSItem.cpp
 )
 
 SET(XLSRAP_UI_HEADERS
 	mainwindow.h
 	XLSModel.h
-	XLSItem.h
 )
 
 SET(XLSRAP_UI_FILES
