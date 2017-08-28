@@ -3,11 +3,15 @@ SET(XLSRAP_UI_SRCS
 	Main.cpp
 	mainwindow.cpp
 	XLSModel.cpp
+	VideoWidget.cpp
+	ControlsWidget.cpp
 )
 
 SET(XLSRAP_UI_HEADERS
 	mainwindow.h
 	XLSModel.h
+	VideoWidget.h
+	ControlsWidget.h
 )
 
 SET(XLSRAP_UI_FILES
@@ -26,6 +30,8 @@ SET(XLSRAP_PROJECT_NAME "xlsrap-ui")
 # Find the qt packages
 find_package(Qt5Widgets)
 find_package(Qt5Core)
+find_package(Qt5Multimedia)
+find_package(Qt5MultimediaWidgets)
 
 # Generate code from ui files
 qt5_wrap_ui(UI_HEADERS ${XLSRAP_UI_FILES})
@@ -40,6 +46,8 @@ get_target_property(QtCore_location Qt5::Core LOCATION)
 target_link_libraries(${XLSRAP_PROJECT_NAME}  
 	Qt5::Widgets
 	Qt5::Core
+	Qt5::Multimedia
+	Qt5::MultimediaWidgets
 	xlsrap-lib  # XLSRap core library
 )
 
