@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1084</width>
-    <height>683</height>
+    <width>1091</width>
+    <height>675</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -39,9 +39,15 @@
      <rect>
       <x>0</x>
       <y>20</y>
-      <width>1081</width>
-      <height>401</height>
+      <width>1091</width>
+      <height>331</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#XlsTableModel  {
+width:100%;
+height:100%;
+}</string>
     </property>
     <property name="sortingEnabled">
      <bool>true</bool>
@@ -63,9 +69,9 @@
    <widget class="QLabel" name="StatusLabel">
     <property name="geometry">
      <rect>
-      <x>910</x>
+      <x>710</x>
       <y>0</y>
-      <width>171</width>
+      <width>371</width>
       <height>21</height>
      </rect>
     </property>
@@ -79,15 +85,59 @@
    <widget class="QLabel" name="SearchResultsLabel">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>550</x>
       <y>0</y>
       <width>47</width>
-      <height>13</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
      <string>Results</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>350</y>
+      <width>371</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="PlayerLayout"/>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>580</y>
+      <width>371</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="ControlsLayout"/>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>550</y>
+      <width>371</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="SliderLayout"/>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>560</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -95,7 +145,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1084</width>
+     <width>1091</width>
      <height>21</height>
     </rect>
    </property>
