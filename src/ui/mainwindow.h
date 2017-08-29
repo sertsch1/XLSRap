@@ -13,14 +13,14 @@
 #include <QtMultimedia\qmediaplayercontrol.h>
 #include <QtMultimedia\qmediaplaylist.h>
 #include <qmessagebox.h>
-#include "qtimer.h"
-#include "qdatetime.h"
-#include "qmediametadata.h"
+#include <qtimer.h>
+#include <qdatetime.h>
+#include <qmediametadata.h>
 
-#include <XLSModel.h>
+#include "XLSModel.h"
 #include "VideoWidget.h"
 #include "ControlsWidget.h"
-#include <xlsrap\XLSRap.hpp>
+#include "xlsrap\XLSRap.hpp"
 
 
 namespace Ui {
@@ -41,10 +41,14 @@ public:
 
 	QString FileName;
 
+	QString MediaFilesDirectory;
+
 	void LoadSheet();
 
 public slots:
 	void OpenSheet();
+
+	void SetFileDirectory();
 
 	void GetMediaFile(const QModelIndex& index);
 

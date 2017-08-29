@@ -41,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	connect(ui->actionOpen_File, SIGNAL(triggered()), this, SLOT(OpenSheet()));
 	connect(ui->XlsTableModel, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(GetMediaFile(QModelIndex)));
+	connect(ui->actionSet_Directory, SIGNAL(triggered()), this, SLOT(SetFileDirectory()));
 	ui->PlayerLayout->addWidget(ActiveVideoWidget);
 
 	ControlsWidget* Controls = new ControlsWidget(this);
@@ -67,6 +68,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(Player, SIGNAL(volumeChanged(int)), Controls, SLOT(setVolume(int)));
 	connect(Player, SIGNAL(mutedChanged(bool)), Controls, SLOT(setMuted(bool)));
 
+
+
 	if (!Player->isAvailable())
 		QMessageBox::warning(this, tr("Service not available"),
 			tr("The QMediaPlayer object does not have a valid service.\n"\
@@ -92,7 +95,17 @@ void MainWindow::LoadSheet()
 	ui->XlsTableModel->resizeColumnsToContents();
 	ui->StatusLabel->setTextFormat(Qt::TextFormat::PlainText);
 	ui->StatusLabel->setText(QString("Finished Loading File."));
-	ui->StatusLabel->setAlignment(Qt::AlignCenter | Qt::AlignLeft);
+	//ui->StatusLabel->setAlignment(Qt::AlignCenter | Qt::AlignLeft);
+
+	QStringList HeaderList;
+	for (int i = 1; i <= CurrentModel->columnCount(); i++) {
+		auto Cell = XLSRap.Sheet.cell(xlnt::cell_reference(i, 1));
+		QString HeaderContent = QString::fromStdString(Cell.to_string());
+		HeaderList.push_back(HeaderContent);
+	}
+
+	ui->SearchSelectRowBox->addItems(HeaderList);
+
 	qApp->processEvents();
 }
 
@@ -100,9 +113,18 @@ void MainWindow::GetMediaFile(const QModelIndex& index)
 {
 	ui->StatusLabel->setText(QString("Loading Media File..."));
 	qApp->processEvents();
+	if (MediaFilesDirectory.isEmpty()) {
+		ui->StatusLabel->setText(QString("No Media File Directory set!"));
+		qApp->processEvents();
+		return;
+	}
 
-	QUrl Path = QUrl(QString(QDir::currentPath() + "/" + (ui->XlsTableModel->model()->data(index).toString())));
+	// Join dir path
+	QDir Directory(MediaFilesDirectory);
+	auto FilePath = QDir::cleanPath(Directory.absolutePath() + QDir::separator() + ui->XlsTableModel->model()->data(index).toString());
+	
 
+	QUrl Path = QUrl(QString(FilePath));
 	if (!Playlist->isEmpty()) {
 		QMediaContent CurrentMedia = Playlist->currentMedia();
 		QMediaContent NewMedia = QMediaContent(Path);
@@ -145,6 +167,10 @@ void MainWindow::OpenSheet() {
 	FileName = QFileDialog::getOpenFileName(this, tr("Select Spreadsheet"), QDir::currentPath(), tr("XLS Files (*.xls *.xlsx);;All Files (*.*)"));
 	if (FileName != nullptr)
 		LoadSheet();
+}
+
+void MainWindow::SetFileDirectory() {
+	MediaFilesDirectory = QFileDialog::getExistingDirectory(this, tr("Select directory containing media files"), QDir::currentPath());
 }
 
 void MainWindow::durationChanged(qint64 duration)

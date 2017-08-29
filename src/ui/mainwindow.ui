@@ -154,6 +154,7 @@ height:100%;
      <string>File</string>
     </property>
     <addaction name="actionOpen_File"/>
+    <addaction name="actionSet_Directory"/>
     <addaction name="actionExit"/>
    </widget>
    <addaction name="menuFile"/>
@@ -175,6 +176,11 @@ height:100%;
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionSet_Directory">
+   <property name="text">
+    <string>Set Directory</string>
    </property>
   </action>
  </widget>
